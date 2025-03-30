@@ -1,0 +1,8 @@
+prefix=/home/oliver/Documents/Projects/NonPrehensile/ros_ws/install
+
+Name: isaac_ur5
+Description: Description of isaac_ur5
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

@@ -1,0 +1,5 @@
+Symlinking /home/oliver/Documents/Projects/NonPrehensile/ros_ws/devel/lib/pkgconfig/isaac_ur5.pc
+Symlinking /home/oliver/Documents/Projects/NonPrehensile/ros_ws/devel/lib/isaac_ur5/ur5_moveit_connect.py
+Symlinking /home/oliver/Documents/Projects/NonPrehensile/ros_ws/devel/lib/isaac_ur5/cmake.lock
+Symlinking /home/oliver/Documents/Projects/NonPrehensile/ros_ws/devel/share/isaac_ur5/cmake/isaac_ur5Config.cmake
+Symlinking /home/oliver/Documents/Projects/NonPrehensile/ros_ws/devel/share/isaac_ur5/cmake/isaac_ur5Config-version.cmake

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='ASCII'?>
+<robot name="niuobjroot2affordance">
+  <link name="swivel_chair_virtual_theta_link"/>
+  <link name="swivel_chair_virtual_y_link"/>
+  <link name="swivel_chair_virtual_x_link"/>
+  <link name="swivel_chair_base_link"/>
+  <joint name="swivel_chair_world_joint" type="fixed">
+    <parent link="world"/>
+    <child link="swivel_chair_base"/>
+    <origin xyz="-0.5 0.9 0.384" rpy="1.5707963 -0.0 -1.5707963"/>
+    <axis xyz="1.0 0.0 0.0"/>
+  </joint>
+  <joint name="swivel_chair_base_x_joint" type="prismatic">
+    <parent link="swivel_chair_virtual_x_link"/>
+    <child link="swivel_chair_base_link"/>
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    <axis xyz="1.0 0.0 0.0"/>
+    <limit effort="0.0" velocity="0.5" lower="-4.0" upper="4.0"/>
+  </joint>
+  <joint name="swivel_chair_x_y_joint" type="prismatic">
+    <parent link="swivel_chair_virtual_y_link"/>
+    <child link="swivel_chair_virtual_x_link"/>
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    <axis xyz="0.0 1.0 0.0"/>
+    <limit effort="0.0" velocity="0.5" lower="-4.0" upper="4.0"/>
+  </joint>
+  <joint name="swivel_chair_y_theta_joint" type="revolute">
+    <parent link="swivel_chair_virtual_theta_link"/>
+    <child link="swivel_chair_virtual_y_link"/>
+    <origin xyz="-0.0 -0.3839999999999999 -1.0289240288650997e-08" rpy="-0.7853981633974482 1.5707962889011904 0.7853981633974482"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <limit effort="0.0" velocity="0.5" lower="-3.14" upper="3.14"/>
+  </joint>
+  <joint name="swivel_chair_base_joint" type="fixed">
+    <parent link="swivel_chair_base"/>
+    <child link="swivel_chair_virtual_theta_link"/>
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    <axis xyz="1.0 0.0 0.0"/>
+  </joint>
+</robot>

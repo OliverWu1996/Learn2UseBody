@@ -1,0 +1,4 @@
+has world link
+world link's child names contain base_link
+affordance face normal is the z axis pointing inside
+effector face normal is its z axis pointing outside

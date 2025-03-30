@@ -1,0 +1,6 @@
+devel_space: /home/oliver/Documents/Projects/NonPrehensile/ros_ws/devel
+install: false
+install_space: /home/oliver/Documents/Projects/NonPrehensile/ros_ws/install
+profile: default
+source_space: /home/oliver/Documents/Projects/NonPrehensile/ros_ws/src
+workspace: /home/oliver/Documents/Projects/NonPrehensile/ros_ws

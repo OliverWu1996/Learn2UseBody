@@ -1,0 +1,251 @@
+<?xml version='1.0' encoding='ASCII'?>
+<robot name="VKChain">
+  <link name="world"/>
+  <link name="microwave_base_link"/>
+  <link name="microwave_link_1">
+    <visual name="frame-2">
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-4.obj" scale="0.347 0.347 0.347"/>
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <visual name="frame-2">
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-2.obj" scale="0.347 0.347 0.347"/>
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <visual name="display_panel-5">
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-5.obj" scale="0.347 0.347 0.347"/>
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-4.obj" scale="0.34199999999999997 0.34199999999999997 0.34199999999999997"/>
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    </collision>
+    <collision>
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-2.obj" scale="0.34199999999999997 0.34199999999999997 0.34199999999999997"/>
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    </collision>
+    <collision>
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-5.obj" scale="0.34199999999999997 0.34199999999999997 0.34199999999999997"/>
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 -0.0 0.0"/>
+    </collision>
+  </link>
+  <link name="microwave_link_0">
+    <visual name="door_frame-6">
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-1.obj" scale="0.347 0.347 0.347"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <visual name="door_frame-6">
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-8.obj" scale="0.347 0.347 0.347"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <visual name="door_frame-6">
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-16.obj" scale="0.347 0.347 0.347"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <visual name="door_frame-6">
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-9.obj" scale="0.347 0.347 0.347"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <visual name="door_frame-6">
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-10.obj" scale="0.347 0.347 0.347"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <visual name="door_frame-6">
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-11.obj" scale="0.347 0.347 0.347"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <visual name="door_frame-6">
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-12.obj" scale="0.347 0.347 0.347"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <visual name="door_frame-6">
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-13.obj" scale="0.347 0.347 0.347"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <visual name="door_frame-6">
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-14.obj" scale="0.347 0.347 0.347"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <visual name="door_frame-6">
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-15.obj" scale="0.347 0.347 0.347"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <visual name="door_frame-6">
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-3.obj" scale="0.347 0.347 0.347"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <visual name="glass-7">
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-6.obj" scale="0.347 0.347 0.347"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <visual name="handle-8">
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-18.obj" scale="0.347 0.347 0.347"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <visual name="handle-8">
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-20.obj" scale="0.347 0.347 0.347"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <visual name="handle-8">
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-19.obj" scale="0.347 0.347 0.347"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-1.obj" scale="0.34199999999999997 0.34199999999999997 0.34199999999999997"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </collision>
+    <collision>
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-8.obj" scale="0.34199999999999997 0.34199999999999997 0.34199999999999997"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </collision>
+    <collision>
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-16.obj" scale="0.34199999999999997 0.34199999999999997 0.34199999999999997"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </collision>
+    <collision>
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-9.obj" scale="0.34199999999999997 0.34199999999999997 0.34199999999999997"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </collision>
+    <collision>
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-10.obj" scale="0.34199999999999997 0.34199999999999997 0.34199999999999997"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </collision>
+    <collision>
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-11.obj" scale="0.34199999999999997 0.34199999999999997 0.34199999999999997"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </collision>
+    <collision>
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-12.obj" scale="0.34199999999999997 0.34199999999999997 0.34199999999999997"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </collision>
+    <collision>
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-13.obj" scale="0.34199999999999997 0.34199999999999997 0.34199999999999997"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </collision>
+    <collision>
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-14.obj" scale="0.34199999999999997 0.34199999999999997 0.34199999999999997"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </collision>
+    <collision>
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-15.obj" scale="0.34199999999999997 0.34199999999999997 0.34199999999999997"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </collision>
+    <collision>
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-3.obj" scale="0.34199999999999997 0.34199999999999997 0.34199999999999997"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </collision>
+    <collision>
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-6.obj" scale="0.34199999999999997 0.34199999999999997 0.34199999999999997"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </collision>
+    <collision>
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-18.obj" scale="0.34199999999999997 0.34199999999999997 0.34199999999999997"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </collision>
+    <collision>
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-20.obj" scale="0.34199999999999997 0.34199999999999997 0.34199999999999997"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </collision>
+    <collision>
+      <geometry>
+        <mesh filename="/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj2_env/assets/interactive/microwave/textured_objs/original-19.obj" scale="0.34199999999999997 0.34199999999999997 0.34199999999999997"/>
+      </geometry>
+      <origin xyz="0.22313499729784864 0.1478008308112621 -0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    </collision>
+  </link>
+  <link name="microwave_handle"/>
+  <joint name="microwave_base_joint" type="fixed">
+    <parent link="world"/>
+    <child link="microwave_base_link"/>
+    <origin xyz="0.0 0.0 0.875" rpy="0.0 -0.0 0.0"/>
+    <axis xyz="1.0 0.0 0.0"/>
+  </joint>
+  <joint name="microwave_joint_1" type="fixed">
+    <parent link="microwave_base_link"/>
+    <child link="microwave_link_1"/>
+    <origin xyz="0.0 0.0 0.0" rpy="1.570796326794897 -0.0 -1.570796326794897"/>
+    <axis xyz="1.0 0.0 0.0"/>
+  </joint>
+  <joint name="microwave_joint_0" type="revolute">
+    <parent link="microwave_link_1"/>
+    <child link="microwave_link_0"/>
+    <origin xyz="-0.22313499729784864 -0.1478008308112621 0.1900846843787737" rpy="0.0 -0.0 0.0"/>
+    <axis xyz="0.0 -1.0 0.0"/>
+    <limit effort="0.005" velocity="0.5" lower="0.0" upper="1.5707963267948966"/>
+  </joint>
+  <joint name="microwave_handle_joint" type="fixed">
+    <parent link="microwave_link_0"/>
+    <child link="microwave_handle"/>
+    <origin xyz="0.3 0.11 0.0" rpy="0.0 -1.57079632679 -1.57079632679"/>
+    <axis xyz="1.0 0.0 0.0"/>
+  </joint>
+</robot>

@@ -1,0 +1,49 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/y/Documents/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/y/Documents/src/astar/include/**",
+        "/home/y/Documents/src/KMeansRex/include/**",
+        "/home/y/Documents/src/tesseract_ros/opw_kinematics/include/**",
+        "/home/y/Documents/src/tesseract_ros/tesseract_planning/tesseract_command_language/include/**",
+        "/home/y/Documents/src/tesseract_ros/tesseract/tesseract_common/include/**",
+        "/home/y/Documents/src/tesseract_ros/tesseract/tesseract_environment/include/**",
+        "/home/y/Documents/src/tesseract_ros/tesseract_planning/tesseract_examples/include/**",
+        "/home/y/Documents/src/tesseract_ros/tesseract/tesseract_geometry/include/**",
+        "/home/y/Documents/src/tesseract_ros/tesseract_monitoring/include/**",
+        "/home/y/Documents/src/tesseract_ros/tesseract_planning_server/include/**",
+        "/home/y/Documents/src/tesseract_ros/tesseract_planning/tesseract_process_managers/include/**",
+        "/home/y/Documents/src/tesseract_ros/tesseract_rosutils/include/**",
+        "/home/y/Documents/src/tesseract_ros/tesseract_rviz/include/**",
+        "/home/y/Documents/src/tesseract_ros/tesseract/tesseract_scene_graph/include/**",
+        "/home/y/Documents/src/tesseract_ros/tesseract/tesseract_srdf/include/**",
+        "/home/y/Documents/src/tesseract_ros/tesseract/tesseract_state_solver/include/**",
+        "/home/y/Documents/src/tesseract_ros/tesseract/tesseract_support/include/**",
+        "/home/y/Documents/src/tesseract_ros/tesseract_planning/tesseract_time_parameterization/include/**",
+        "/home/y/Documents/src/tesseract_ros/tesseract/tesseract_urdf/include/**",
+        "/home/y/Documents/src/tesseract_ros/tesseract/tesseract_visualization/include/**",
+        "/home/y/Documents/src/tesseract_ros/trajopt/trajopt/include/**",
+        "/home/y/Documents/src/tesseract_ros/trajopt/trajopt_ifopt/include/**",
+        "/home/y/Documents/src/tesseract_ros/trajopt/trajopt_sco/include/**",
+        "/home/y/Documents/src/tesseract_ros/trajopt/trajopt_optimizers/trajopt_sqp/include/**",
+        "/home/y/Documents/src/tesseract_ros/trajopt/trajopt_utils/include/**",
+        "/home/y/Documents/src/tesseract_ros/trajopt/trajopt_ext/vhacd/include/**",
+        "/home/y/Documents/src/vkc/include/**",
+        "/home/y/Documents/src/vkc_example/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
