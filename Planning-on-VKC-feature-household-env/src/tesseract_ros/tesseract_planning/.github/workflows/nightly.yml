@@ -1,0 +1,70 @@
+name: Nightly
+
+on:
+  pull_request:
+    types: [labeled]
+  schedule:
+    - cron: '0 5 * * *'
+
+jobs:
+  industrial_ci:
+    if: contains(github.event.pull_request.labels.*.name, 'check-tesseract-ros') || github.event.schedule == true
+    name: ${{ matrix.env.CI_NAME }}
+    runs-on: ubuntu-latest
+    env:
+      OS_NAME: ubuntu
+      ROS_REPO: main
+      BUILDER: colcon
+      UPSTREAM_WORKSPACE: 'dependencies.rosinstall'
+      DOWNSTREAM_WORKSPACE: 'github:tesseract-robotics/tesseract_ros#master github:tesseract-robotics/tesseract_python#master'
+      ROSDEP_SKIP_KEYS: "bullet ros_industrial_cmake_boilerplate fcl iwyu taskflow"
+      PARALLEL_TESTS: false
+      UPSTREAM_CMAKE_ARGS: "-DCMAKE_BUILD_TYPE=Release"
+      TARGET_CMAKE_ARGS: "-DCMAKE_BUILD_TYPE=Release"
+      DOWNSTREAM_CMAKE_ARGS: "-DCMAKE_BUILD_TYPE=Release"
+    strategy:
+      fail-fast: false
+      matrix:
+        env:
+          - {CI_NAME: Bionic-Build-Nightly,
+             OS_CODE_NAME: bionic,
+             ROS_DISTRO: melodic,
+             DOCKER_IMAGE: "ghcr.io/tesseract-robotics/tesseract:melodic-master",
+             CCACHE_DIR: "${{ github.workspace }}/Bionic-Build-Nightly/.ccache"}
+          - {CI_NAME: Focal-Build-Nightly,
+             OS_CODE_NAME: focal,
+             ROS_DISTRO: noetic,
+             DOCKER_IMAGE: "ghcr.io/tesseract-robotics/tesseract:noetic-master",
+             CCACHE_DIR: "${{ github.workspace }}/Focal-Build-Nightly/.ccache"}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - name: Free disk space
+        continue-on-error: true
+        run: |
+          sudo swapoff -a
+          sudo rm -f /swapfile
+          sudo apt clean
+          docker rmi $(docker image ls -aq)
+          df -h
+
+      - name: Prepare ccache timestamp
+        id: ccache_cache_timestamp
+        shell: cmake -P {0}
+        run: |
+          string(TIMESTAMP current_date "%Y-%m-%d-%H;%M;%S" UTC)
+          message("::set-output name=timestamp::${current_date}")
+
+      - name: ccache cache files
+        continue-on-error: true
+        uses: actions/cache@v1.1.0
+        with:
+          path: ${{ matrix.env.CI_NAME }}/.ccache
+          key: ${{ matrix.env.CI_NAME }}-ccache-${{ steps.ccache_cache_timestamp.outputs.timestamp }}
+          restore-keys: |
+            ${{ matrix.env.CI_NAME }}-ccache-
+
+      - uses: 'ros-industrial/industrial_ci@master'
+        env: ${{matrix.env}}

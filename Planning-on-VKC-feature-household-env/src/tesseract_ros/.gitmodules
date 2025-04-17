@@ -1,0 +1,24 @@
+[submodule "ros_industrial_cmake_boilerplate"]
+	path = ros_industrial_cmake_boilerplate
+	url = https://github.com/ros-industrial/ros_industrial_cmake_boilerplate.git
+[submodule "tesseract"]
+	path = tesseract
+	url = ssh://git@gitlab.mybigai.ac.cn:2222/robotics/tesseract.git
+[submodule "trajopt"]
+	path = trajopt
+	url = https://github.com/tesseract-robotics/trajopt.git
+[submodule "tesseract_planning"]
+	path = tesseract_planning
+	url = ssh://git@gitlab.mybigai.ac.cn:2222/robotics/tesseract_planning.git
+[submodule "descartes_light"]
+	path = descartes_light
+	url = https://github.com/swri-robotics/descartes_light.git
+[submodule "opw_kinematics"]
+	path = opw_kinematics
+	url = https://github.com/Jmeyer1292/opw_kinematics.git
+[submodule "ifopt"]
+	path = ifopt
+	url = https://github.com/ethz-adrl/ifopt.git
+[submodule "tesseract_qt"]
+	path = tesseract_qt
+	url = https://github.com/tesseract-robotics/tesseract_qt.git
