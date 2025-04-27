@@ -21,14 +21,14 @@ import ikpy.utils.plot as plot_utils
 
 
 
-ORI_SCENE_URDF_PATH = "/home/y/Documents/WYY_META/effectit/VKC/src/vkc-planner-ros/vkc_deps/scene_builder/output/env_description/singleobj3_env/main.urdf"
-ORI_ROBOT_URDF_PATH = "/home/y/Documents/WYY_META/effectit/ros_kortex/kortex_description/arms/gen3/7dof/urdf/GEN3_URDF_V12_absPath_pushit.urdf"
-AESTRUCTURE_URDF_PATH = os.path.join(os.getcwd(),"resource", "urdf", "AEstructure.urdf")
-MR_URDF_PATH = os.path.join(os.getcwd(),"resource", "urdf", "MainRobot.urdf")
+ORI_SCENE_URDF_PATH = "/home/oliver/Documents/Projects/NonPrehensile/Planning-on-VKC-feature-household-env/src/env_description/singleobj3_env/main.urdf"
+ORI_ROBOT_URDF_PATH = "/home/oliver/Documents/Projects/NonPrehensile/Planning-on-VKC-feature-household-env/src/robot_description/ur_description/urdf/ur5_generated.urdf"
+AESTRUCTURE_URDF_PATH = os.path.join(os.getcwd(),"resource", "urdf", "AEstructure_test01.urdf")
+MR_URDF_PATH = os.path.join(os.getcwd(),"resource", "urdf", "MainRobot_test01.urdf")
 URDF_RESOURCE_PATH = os.path.join(os.getcwd(),"resource", "urdf")
 
-ORI_NIU_ROBOT = "/home/y/Documents/WYY_META/Planning-on-VKC/src/vkc_example/env/vkc_demo.urdf"
-ORI_NIU_SCENE = "/home/y/Documents/WYY_META/SR_exp/effectit/VKC/src/env_description/household_env/main.urdf"
+# ORI_NIU_ROBOT = "/home/y/Documents/WYY_META/Planning-on-VKC/src/vkc_example/env/vkc_demo.urdf"
+# ORI_NIU_SCENE = "/home/y/Documents/WYY_META/SR_exp/effectit/VKC/src/env_description/household_env/main.urdf"
 
 DEFAULT_EFFORT = 1
 DEFAULT_VELOCITY = 1
