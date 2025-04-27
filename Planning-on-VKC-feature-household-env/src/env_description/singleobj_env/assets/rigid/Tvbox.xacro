@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="box_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="Tvbox" params="prefix x y z theta">
+    <link name="${prefix}_Tvbox_base_link"/>
+    <joint name="${prefix}_Tvbox_base_joint" type="fixed">
+      <origin xyz="${x} ${y} ${z}" rpy="0 0 ${theta}" />
+      <parent link="world" />
+      <child link="${prefix}_Tvbox_base_link" />
+      <axis xyz="0 0 0" />
+    </joint>
+
+    <link name="${prefix}_Tvbox_upper_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <box size="0.13 1.72 1.07" />
+        </geometry>
+        <material name="">
+          <color rgba="0.564705882352941 0.564705882352941 0.564705882352941 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.13 1.72 1.07" scale="1 1 1"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${prefix}_Tvbox_upper_joint" type="fixed">
+      <origin xyz="-0.065 0 1.315" rpy="0 0 0" />
+      <parent link="${prefix}_Tvbox_base_link" />
+      <child link="${prefix}_Tvbox_upper_link" />
+      <axis xyz="0 0 0" />
+    </joint>
+
+     <link name="${prefix}_Tvbox_bottom_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <box size="0.78 1.2 0.78" />
+        </geometry>
+        <material name="">
+          <color rgba="0.564705882352941 0.564705882352941 0.564705882352941 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.78 1.2 0.78" scale="1 1 1"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${prefix}_Tvbox_bottom_joint" type="fixed">
+      <origin xyz="0 0 -0.925" rpy="0 0 0" />
+      <parent link="${prefix}_Tvbox_upper_link" />
+      <child link="${prefix}_Tvbox_bottom_link" />
+      <axis xyz="0 0 0" />
+    </joint>
+  </xacro:macro>
+</robot>

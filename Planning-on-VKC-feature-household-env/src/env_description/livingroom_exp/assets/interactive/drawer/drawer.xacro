@@ -1,0 +1,493 @@
+<?xml version="1.0"?>
+
+<robot name="drawer" xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:property name="drawer_height" value="0.305"/>
+    <xacro:property name="drawer_width" value="0.361"/>
+    <xacro:property name="drawer_length" value="0.362"/>    
+    <xacro:property name="drawer_mass" value="0.100"/>
+
+    <xacro:property name="subdrawer_height" value="0.152"/>
+    <xacro:property name="subdrawer_width" value="0.361"/>
+    <xacro:property name="subdrawer_length" value="0.362"/>    
+    <xacro:property name="drawer_mass" value="0.100"/>
+
+    <xacro:property name="gap" value="0.02"/>
+    <xacro:property name="inner_wall_thickness_big" value="0.035"/>
+    <xacro:property name="inner_wall_thickness_small" value="0.03"/>
+    <xacro:property name="wall_thickness" value="0.018"/>
+    <xacro:property name="wall_mass" value="0.05"/>
+
+    <xacro:property name="side_wall_height" value="${(drawer_height + 2 * gap)}"/>
+    <xacro:property name="side_wall_length" value="${drawer_length + gap}"/>
+
+    <xacro:property name="base_wall_width" value="${drawer_width + 2 * gap + 2 * wall_thickness}"/>
+    <xacro:property name="base_wall_length" value="${drawer_length + gap}"/>
+
+    <xacro:property name="back_wall_height" value="${side_wall_height + 2 * wall_thickness}"/>
+    <xacro:property name="back_wall_length" value="${base_wall_width}"/>
+
+    <xacro:property name="handle_height" value="0.006"/>
+    <xacro:property name="handle_width" value="0.102"/>
+    <xacro:property name="handle_length" value="0.05"/>
+    <xacro:property name="mu" value="0.00"/>
+    
+    <material name="omni/Blue">
+      <color rgba="0 0 0.8 1"/>
+    </material>
+    <material name="omni/Red">
+      <color rgba="1 0 0 1"/>
+    </material>
+    <material name="omni/White">
+      <color rgba="1 1 1 1"/>
+    </material>
+    <material name="omni/Green">
+      <color rgba="0 1 0 1"/>
+    </material>
+    <material name="omni/Yellow">
+      <color rgba="1 1 0 1"/>
+    </material>
+    <material name="omni/LightGrey">
+      <color rgba="0.6 0.6 0.6 1"/>
+    </material>
+    <material name="omni/DarkGrey">
+      <color rgba="0.4 0.4 0.4 1"/>
+    </material>
+
+    <xacro:macro name="drawer" params="prefix x y z theta">
+
+    <link name="${prefix}_base_link"/>
+
+    <link name="${prefix}_drawer1">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0.01"/>
+        <geometry>
+          <box size="${subdrawer_length} ${subdrawer_width} 0.02"/>
+        </geometry>
+        <material name="omni/LightGrey"/>
+      </visual>
+      <collision>
+          <origin rpy="0 0 0" xyz="0 0 0.01"/>
+          <geometry>
+            <box size="${subdrawer_length} ${subdrawer_width} 0.02"/>
+          </geometry>
+          <contact_coefficients mu="${mu}"/>
+      </collision>
+      <inertial>
+        <!-- CENTER OF MASS -->
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="${drawer_mass}"/>
+        <!-- box inertia: 1/12*m(y^2+z^2), ... -->
+        <inertia ixx="${1/2 * drawer_mass * (drawer_width**2 + drawer_height**2)}" ixy="0" ixz="0" iyy="${1/2 * drawer_mass * (drawer_length**2 + drawer_height**2)}" iyz="0" izz="${1/2 * drawer_mass * (drawer_length**2 + drawer_width**2)}"/>
+      </inertial>
+    </link>
+
+    <joint name="${prefix}_base_drawer1_joint" type="prismatic">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <parent link="${prefix}_base_link"/>
+      <child link="${prefix}_drawer1"/>
+      <dynamics damping="1.0" friction="1.0"/>
+      <limit effort="0.1" lower="0.0" upper="0.23" velocity="10.0"/>
+      <axis xyz="1 0 0"/>
+    </joint>
+
+    <!-- <link name="${prefix}_drawer1_box">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <box size="0.12 0.14 0.1" />
+        </geometry>
+        <material name="">
+          <color rgba="1 1 1 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.12 0.14 0.1" scale="0.8 0.8 0.8"/>
+        </geometry>
+      </collision>
+    </link> -->
+
+    <!-- <joint name="${prefix}_base_drawer1_joint_box" type="fixed">
+      <origin xyz="0 0 0.07" rpy="0 0 0" />
+      <parent link="${prefix}_drawer1"/>
+      <child link="${prefix}_drawer1_box" />
+      <axis xyz="0 0 0" />
+    </joint> -->
+
+
+
+
+
+    <link name="${prefix}_drawer1_wall1">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 ${subdrawer_height/2}"/>
+        <geometry>
+          <box size="${inner_wall_thickness_big} ${subdrawer_width} ${subdrawer_height}"/>
+        </geometry>
+        <material name="omni/LightGrey"/>
+      </visual>
+      <collision>
+          <origin rpy="0 0 0" xyz="0 0 ${subdrawer_height/2}"/>
+          <geometry>
+            <box size="${inner_wall_thickness_big+0.02} ${subdrawer_width} ${subdrawer_height+0.03}"/>
+          </geometry>
+          <contact_coefficients mu="${mu}"/>
+      </collision>
+      <inertial>
+        <!-- CENTER OF MASS -->
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="${drawer_mass}"/>
+        <!-- box inertia: 1/12*m(y^2+z^2), ... -->
+        <inertia ixx="${1/2 * drawer_mass * (drawer_width**2 + drawer_height**2)}" ixy="0" ixz="0" iyy="${1/2 * drawer_mass * (drawer_length**2 + drawer_height**2)}" iyz="0" izz="${1/2 * drawer_mass * (drawer_length**2 + drawer_width**2)}"/>
+      </inertial>
+    </link>
+
+    <joint name="${prefix}_base_drawer1_joint1" type="fixed">
+      <origin rpy="0 0 0" xyz="${(subdrawer_length-inner_wall_thickness_big)/2} 0 0"/>
+      <parent link="${prefix}_drawer1"/>
+      <child link="${prefix}_drawer1_wall1"/>
+      <axis xyz="0 0 0" />
+    </joint>
+
+    <link name="${prefix}_drawer1_wall2">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 ${subdrawer_height/2}"/>
+        <geometry>
+          <box size="${inner_wall_thickness_big} ${subdrawer_width} ${subdrawer_height}"/>
+        </geometry>
+        <material name="omni/LightGrey"/>
+      </visual>
+      <collision>
+          <origin rpy="0 0 0" xyz="0 0 ${subdrawer_height/2}"/>
+          <geometry>
+            <box size="${inner_wall_thickness_big} ${subdrawer_width} ${subdrawer_height}"/>
+          </geometry>
+          <contact_coefficients mu="${mu}"/>
+      </collision>
+      <inertial>
+        <!-- CENTER OF MASS -->
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="${drawer_mass}"/>
+        <!-- box inertia: 1/12*m(y^2+z^2), ... -->
+        <inertia ixx="${1/2 * drawer_mass * (drawer_width**2 + drawer_height**2)}" ixy="0" ixz="0" iyy="${1/2 * drawer_mass * (drawer_length**2 + drawer_height**2)}" iyz="0" izz="${1/2 * drawer_mass * (drawer_length**2 + drawer_width**2)}"/>
+      </inertial>
+    </link>
+
+    <joint name="${prefix}_base_drawer1_joint2" type="fixed">
+      <origin rpy="0 0 0" xyz="${-(subdrawer_length-inner_wall_thickness_big)/2} 0 0"/>
+      <parent link="${prefix}_drawer1"/>
+      <child link="${prefix}_drawer1_wall2"/>
+      <axis xyz="0 0 0" />
+    </joint>
+
+    <link name="${prefix}_drawer1_wall3">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 ${subdrawer_height/2}"/>
+        <geometry>
+          <box size="${subdrawer_length} ${inner_wall_thickness_small} ${subdrawer_height}"/>
+        </geometry>
+        <material name="omni/LightGrey"/>
+      </visual>
+      <collision>
+          <origin rpy="0 0 0" xyz="0 0 ${subdrawer_height/2}"/>
+          <geometry>
+            <box size="${subdrawer_length} ${inner_wall_thickness_small} ${subdrawer_height}"/>
+          </geometry>
+          <contact_coefficients mu="${mu}"/>
+      </collision>
+      <inertial>
+        <!-- CENTER OF MASS -->
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="${drawer_mass}"/>
+        <!-- box inertia: 1/12*m(y^2+z^2), ... -->
+        <inertia ixx="${1/2 * drawer_mass * (drawer_width**2 + drawer_height**2)}" ixy="0" ixz="0" iyy="${1/2 * drawer_mass * (drawer_length**2 + drawer_height**2)}" iyz="0" izz="${1/2 * drawer_mass * (drawer_length**2 + drawer_width**2)}"/>
+      </inertial>
+    </link>
+
+    <joint name="${prefix}_base_drawer1_joint3" type="fixed">
+      <origin rpy="0 0 0" xyz="0 ${(subdrawer_width-inner_wall_thickness_small)/2} 0"/>
+      <parent link="${prefix}_drawer1"/>
+      <child link="${prefix}_drawer1_wall3"/>
+      <axis xyz="0 0 0" />
+    </joint>
+
+    <link name="${prefix}_drawer1_wall4">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 ${subdrawer_height/2}"/>
+        <geometry>
+          <box size="${subdrawer_length} ${inner_wall_thickness_small} ${subdrawer_height}"/>
+        </geometry>
+        <material name="omni/LightGrey"/>
+      </visual>
+      <collision>
+          <origin rpy="0 0 0" xyz="0 0 ${subdrawer_height/2}"/>
+          <geometry>
+            <box size="${subdrawer_length} ${inner_wall_thickness_small} ${subdrawer_height+0.03}"/>
+          </geometry>
+          <contact_coefficients mu="${mu}"/>
+      </collision>
+      <inertial>
+        <!-- CENTER OF MASS -->
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="${drawer_mass}"/>
+        <!-- box inertia: 1/12*m(y^2+z^2), ... -->
+        <inertia ixx="${1/2 * drawer_mass * (drawer_width**2 + drawer_height**2)}" ixy="0" ixz="0" iyy="${1/2 * drawer_mass * (drawer_length**2 + drawer_height**2)}" iyz="0" izz="${1/2 * drawer_mass * (drawer_length**2 + drawer_width**2)}"/>
+      </inertial>
+    </link>
+
+    <joint name="${prefix}_base_drawer1_joint4" type="fixed">
+      <origin rpy="0 0 0" xyz="0 ${-(subdrawer_width-inner_wall_thickness_small)/2} 0"/>
+      <parent link="${prefix}_drawer1"/>
+      <child link="${prefix}_drawer1_wall4"/>
+      <axis xyz="0 0 0" />
+    </joint>
+
+    <link name="${prefix}_handle1">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <box size="${handle_length} ${handle_width} ${handle_height}"/>
+        </geometry>
+        <material name="omni/DarkGrey"/>
+      </visual>
+      <collision>
+          <origin rpy="0 0 0" xyz="0 0 0.0"/>
+          <geometry>
+            <box size="${handle_length} ${handle_width} ${handle_height}" scale="2.0 1.1 1.5"/>
+          </geometry>
+      </collision>
+
+      <inertial>
+        <!-- CENTER OF MASS -->
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="${wall_mass}"/>
+        <!-- box inertia: 1/12*m(y^2+z^2), ... -->
+        <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+      </inertial>
+    </link>
+    <joint name="${prefix}_d1_2_hl1" type="fixed">
+      <origin rpy="0 0 0" xyz="${subdrawer_length / 2 + handle_length / 2} 0 ${subdrawer_height/2}"/>
+      <parent link="${prefix}_drawer1"/>
+      <child link="${prefix}_handle1"/>
+    </joint>
+
+    <link name="${prefix}_drawer2">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 ${-subdrawer_height/2}"/>
+        <geometry>
+          <box size="${subdrawer_length} ${subdrawer_width} ${subdrawer_height-0.001}"/>
+        </geometry>
+        <material name="omni/LightGrey"/>
+      </visual>
+      <collision>
+          <origin rpy="0 0 0" xyz="0 0 ${-subdrawer_height/2}"/>
+          <geometry>
+            <box size="${subdrawer_length} ${subdrawer_width} ${subdrawer_height}"/>
+          </geometry>
+          <contact_coefficients mu="${mu}"/>
+      </collision>
+      <inertial>
+        <!-- CENTER OF MASS -->
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="${drawer_mass}"/>
+        <!-- box inertia: 1/12*m(y^2+z^2), ... -->
+        <inertia ixx="${1/2 * drawer_mass * (drawer_width**2 + drawer_height**2)}" ixy="0" ixz="0" iyy="${1/2 * drawer_mass * (drawer_length**2 + drawer_height**2)}" iyz="0" izz="${1/2 * drawer_mass * (drawer_length**2 + drawer_width**2)}"/>
+      </inertial>
+    </link>
+    
+
+    <joint name="${prefix}_base_drawer2_joint" type="prismatic">
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <parent link="${prefix}_base_link"/>
+      <child link="${prefix}_drawer2"/>
+      <dynamics damping="1.0" friction="1.0"/>
+      <limit effort="0.1" lower="0.0" upper="0.23" velocity="10.0"/>
+      <axis xyz="1 0 0"/>
+    </joint>
+
+    <link name="${prefix}_handle2">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <box size="${handle_length} ${handle_width} ${handle_height}"/>
+        </geometry>
+        <material name="omni/DarkGrey"/>
+      </visual>
+      <collision>
+          <origin rpy="0 0 0" xyz="0 0 0.0"/>
+          <geometry>
+            <box size="${handle_length} ${handle_width} ${handle_height}"/>
+          </geometry>
+      </collision>
+
+      <inertial>
+        <!-- CENTER OF MASS -->
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="${wall_mass}"/>
+        <!-- box inertia: 1/12*m(y^2+z^2), ... -->
+        <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0"/>
+      </inertial>
+    </link>
+    <joint name="${prefix}_d2_2_hl2" type="fixed">
+      <origin rpy="0 0 0" xyz="${subdrawer_length / 2 + handle_length / 2} 0 ${-subdrawer_height/2}"/>
+      <parent link="${prefix}_drawer2"/>
+      <child link="${prefix}_handle2"/>
+    </joint>
+
+    
+    <link name="${prefix}_left_wall">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <box size="${side_wall_length} ${wall_thickness} ${side_wall_height}"/>
+        </geometry>
+        <material name="omni/White"/>
+      </visual>
+      <collision>
+          <origin rpy="0 0 0" xyz="0 0 0.0"/>
+          <geometry>
+            <box size="${side_wall_length} ${wall_thickness} ${side_wall_height}"/>
+          </geometry>
+      </collision>
+      <inertial>
+        <!-- CENTER OF MASS -->
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="${wall_mass}"/>
+        <!-- box inertia: 1/12*m(y^2+z^2), ... -->
+        <inertia ixx="${1/2 * wall_mass * (wall_thickness**2 + side_wall_height**2)}" ixy="0" ixz="0" iyy="${1/2 * wall_mass * (side_wall_length**2 + side_wall_height**2)}" iyz="0" izz="${1/2 * wall_mass * (side_wall_length**2 + wall_thickness**2)}"/>
+      </inertial>
+    </link>
+    <joint name="${prefix}_b_2_lw" type="fixed">
+      <origin rpy="0 0 0" xyz="-${gap} -${ (drawer_width / 2 + wall_thickness / 2 ) + gap} 0"/>
+      <parent link="${prefix}_base_link"/>
+      <child link="${prefix}_left_wall"/>
+    </joint>
+
+
+     <link name="${prefix}_right_wall">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <box size="${side_wall_length} ${wall_thickness} ${side_wall_height}"/>
+        </geometry>
+        <material name="omni/White"/>
+      </visual>
+      <collision>
+          <origin rpy="0 0 0" xyz="0 0 0.0"/>
+          <geometry>
+            <box size="${side_wall_length} ${wall_thickness} ${side_wall_height}"/>
+          </geometry>
+      </collision>
+      <inertial>
+        <!-- CENTER OF MASS -->
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="${wall_mass}"/>
+        <!-- box inertia: 1/12*m(y^2+z^2), ... -->
+        <inertia ixx="${1/2 * wall_mass * (wall_thickness**2 + side_wall_height**2)}" ixy="0" ixz="0" iyy="${1/2 * wall_mass * (side_wall_length**2 + side_wall_height**2)}" iyz="0" izz="${1/2 * wall_mass * (side_wall_length**2 + wall_thickness**2)}"/>
+      </inertial>
+    </link>
+    <joint name="${prefix}_b_2_rw" type="fixed">
+      <origin rpy="0 0 0" xyz="-${gap} ${(drawer_width/2 + wall_thickness / 2 ) + gap} 0"/>
+      <parent link="${prefix}_base_link"/>
+      <child link="${prefix}_right_wall"/>
+    </joint>
+
+    <link name="${prefix}_bottom_wall">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <box size="${base_wall_length} ${base_wall_width} ${wall_thickness}"/>
+        </geometry>
+        <material name="omni/White"/>
+      </visual>
+      <collision>
+          <origin rpy="0 0 0" xyz="0 0 0.0"/>
+          <geometry>
+            <box size="${base_wall_length} ${base_wall_width} ${wall_thickness}"/>
+          </geometry>
+      </collision>
+      <inertial>
+        <!-- CENTER OF MASS -->
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="${wall_mass}"/>
+        <!-- box inertia: 1/12*m(y^2+z^2), ... -->
+        <inertia ixx="${1/2 * wall_mass * (wall_thickness**2 + base_wall_width**2)}" ixy="0" ixz="0" iyy="${1/2 * wall_mass * (base_wall_length**2 + wall_thickness**2)}" iyz="0" izz="${1/2 * wall_mass * (base_wall_length**2 + base_wall_width**2)}"/>
+      </inertial>
+    </link>
+    <joint name="${prefix}_b_2_bw" type="fixed">
+      <origin rpy="0 0 0" xyz="-${gap} 0 -${drawer_height / 2 + wall_thickness / 2 + gap}"/>
+      <parent link="${prefix}_base_link"/>
+      <child link="${prefix}_bottom_wall"/>
+    </joint>
+
+
+    <link name="${prefix}_top_wall">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <box size="${base_wall_length} ${base_wall_width} ${wall_thickness}"/>
+        </geometry>
+        <material name="omni/White"/>
+      </visual>
+      <collision>
+          <origin rpy="0 0 0" xyz="0 0 0.0"/>
+          <geometry>
+            <box size="${base_wall_length} ${base_wall_width} ${wall_thickness}"/>
+          </geometry>
+      </collision>
+      <inertial>
+        <!-- CENTER OF MASS -->
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="${wall_mass}"/>
+        <!-- box inertia: 1/12*m(y^2+z^2), ... -->
+        <inertia ixx="${1/2 * wall_mass * (wall_thickness**2 + base_wall_width**2)}" ixy="0" ixz="0" iyy="${1/2 * wall_mass * (base_wall_length**2 + wall_thickness**2)}" iyz="0" izz="${1/2 * wall_mass * (base_wall_length**2 + base_wall_width**2)}"/>
+      </inertial>
+    </link>
+    <joint name="${prefix}_b_2_tw" type="fixed">
+      <origin rpy="0 0 0" xyz="-${gap} 0 ${drawer_height / 2 + wall_thickness / 2 + gap}"/>
+      <parent link="${prefix}_base_link"/>
+      <child link="${prefix}_top_wall"/>
+    </joint>
+
+
+    <link name="${prefix}_back_wall">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <box size="${wall_thickness} ${back_wall_length} ${back_wall_height}"/>
+        </geometry>
+        <material name="omni/White"/>
+      </visual>
+      <collision>
+          <origin rpy="0 0 0" xyz="0 0 0.0"/>
+          <geometry>
+            <box size="${wall_thickness} ${back_wall_length} ${back_wall_height}"/>
+          </geometry>
+      </collision>
+      <inertial>
+        <!-- CENTER OF MASS -->
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="${wall_mass}"/>
+        <!-- box inertia: 1/12*m(y^2+z^2), ... -->
+        <inertia ixx="${1/2 * wall_mass * (back_wall_length**2 + back_wall_height**2)}" ixy="0" ixz="0" iyy="${1/2 * wall_mass * (back_wall_height**2 + wall_thickness**2)}" iyz="0" izz="${1/2 * wall_mass * (back_wall_length**2 + back_wall_length**2)}"/>
+      </inertial>
+    </link>
+    <joint name="${prefix}_b_2_backw" type="fixed">
+      <origin rpy="0 0 0" xyz="-${drawer_length / 2 + gap + wall_thickness / 2} 0 0"/>
+      <parent link="${prefix}_base_link"/>
+      <child link="${prefix}_back_wall"/>
+    </joint>
+
+    <joint name="${prefix}_world_joint" type="fixed">
+      <origin xyz="${x} ${y} ${z}" rpy="0 0 ${theta}"/>
+      <parent link="world"/>
+      <child link="${prefix}_base_link"/>
+    </joint>
+
+     
+  </xacro:macro>
+    
+
+</robot>

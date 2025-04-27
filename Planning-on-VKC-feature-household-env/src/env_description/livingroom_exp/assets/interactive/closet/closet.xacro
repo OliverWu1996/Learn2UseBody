@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="closet_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:property name="right_door_articulate" value="0.1" />
+  <xacro:property name="mesh_dir" value="package://env_description/tieta_env/assets/interactive/closet/meshes" />
+  <xacro:macro name="closet" params="prefix x y theta">
+    <link name="${prefix}_base_link">
+      <inertial>
+        <origin xyz="0.194178515040246 0.584999999999999 1.21348104180704" rpy="0 0 0" />
+        <mass value="294.108283185308" />
+        <inertia ixx="266.662530970608" ixy="2.44252017176031E-14" ixz="1.41508571383804" iyy="229.907989654031" iyz="-6.54631169708434E-14" izz="57.236758061963" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_dir}/base_link.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="1 1 1 1" />
+        </material>
+      </visual>
+      <collision name="collision1">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_dir}/base_link.STL" scale="0.2 1 1" />
+        </geometry>
+      </collision>
+      <collision name="collision2">
+        <origin xyz="0.40 0 0" rpy="0 0 0" />
+        <geometry>
+           <mesh filename="${mesh_dir}/bottom_left_door_link.STL" scale="20 1 1"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${prefix}_base_joint" type="fixed">
+      <origin xyz="${x} ${y} 0" rpy="0 0 ${theta}" />
+      <parent link="world" />
+      <child link="${prefix}_base_link" />
+      <axis xyz="0 0 0" />
+    </joint>
+    <link name="${prefix}_plane_link">
+      <inertial>
+        <origin xyz="0.194178515040246 0.584999999999999 1.21348104180704" rpy="0 0 0" />
+        <mass value="294.108283185308" />
+        <inertia ixx="266.662530970608" ixy="2.44252017176031E-14" ixz="1.41508571383804" iyy="229.907989654031" iyz="-6.54631169708434E-14" izz="57.236758061963" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.52 0.52 0.01"/>
+        </geometry>
+        <material name="">
+          <color rgba="1 1 1 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <box size="0.52 0.52 0.01" scale="1.1 1 2"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${prefix}_plane_joint" type="fixed">
+      <origin xyz="0.26 0.78 0.95" rpy="0 0 0" />
+      <parent link="${prefix}_base_link" />
+      <child link="${prefix}_plane_link" />
+      <axis xyz="0 0 0" />
+    </joint>
+    <link name="${prefix}_top_left_door_link">
+      <inertial>
+        <origin xyz="-0.00450128837595587 0.274578590933319 0.244932718144518" rpy="0 0 0" />
+        <mass value="5.48642920367321" />
+        <inertia ixx="0.25302023864289" ixy="-1.94088168924543E-06" ixz="1.66159270299727E-06" iyy="0.109901800608201" iyz="-0.000101357154882833" izz="0.143484221430936" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_dir}/top_left_door_link.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="1 1 1 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_dir}/top_left_door_link.STL" />
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${prefix}_top_left_door_joint" type="revolute">
+      <origin xyz="0.5745 0.0305 1.99" rpy="0 0 0" />
+      <parent link="${prefix}_base_link" />
+      <child link="${prefix}_top_left_door_link" />
+      <axis xyz="0 0 -1" />
+      <limit lower="0.0" upper="3.14" effort="30" velocity="10" />
+    </joint>
+    <link name="${prefix}_top_left_handle">
+      <inertial>
+        <origin xyz="0.00955678974336438 0 2.26330649466533E-06" rpy="0 0 0" />
+        <mass value="0.0101205665745806" />
+        <inertia ixx="3.69207813332895E-06" ixy="4.35319965292841E-21" ixz="-5.55852026511251E-12" iyy="4.85274053427323E-06" iyz="4.35547781179855E-21" izz="1.51613518793949E-06" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_dir}/top_left_handle.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="1 1 1 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_dir}/top_left_handle.STL" />
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${prefix}_top_left_handle_joint" type="fixed">
+      <origin xyz="0.0105 0.506999999999999 0.281498172103289" rpy="0 0 0" />
+      <parent link="${prefix}_top_left_door_link" />
+      <child link="${prefix}_top_left_handle" />
+      <axis xyz="0 0 0" />
+    </joint>
+    <link name="${prefix}_top_right_door_link">
+      <inertial>
+        <origin xyz="-0.00450128837595543 -0.274578590933319 0.244932718144518" rpy="0 0 0" />
+        <mass value="5.48642920367321" />
+        <inertia ixx="0.25302023864289" ixy="1.94088168924509E-06" ixz="1.66159270299727E-06" iyy="0.109901800608201" iyz="0.000101357154882817" izz="0.143484221430936" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_dir}/top_right_door_link.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="1 1 1 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 -0.03" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_dir}/top_right_door_link.STL" scale = "3 1 1.1"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${prefix}_top_right_door_joint" type="revolute">
+      <origin xyz="0.5745 1.1395 1.99" rpy="0 0 0" />
+      <parent link="${prefix}_base_link" />
+      <child link="${prefix}_top_right_door_link" />
+      <axis xyz="0 0 1" />
+      <limit lower="0.0" upper="3.14" effort="30" velocity="10" />
+    </joint>
+    <link name="${prefix}_top_right_handle">
+      <inertial>
+        <origin xyz="0.00955678974336482 -3.33066907387547E-16 2.26330649422124E-06" rpy="0 0 0" />
+        <mass value="0.0101205665745807" />
+        <inertia ixx="3.69207813332882E-06" ixy="4.11359919739862E-21" ixz="-5.55852026534859E-12" iyy="4.85274053427329E-06" iyz="3.11231300260592E-21" izz="1.51613518793932E-06" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_dir}/top_right_handle.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="1 1 1 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_dir}/top_right_handle.STL" />
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${prefix}_top_right_handle_joint" type="fixed">
+      <origin xyz="0.0105000000000004 -0.507 0.281498172103289" rpy="0 0 0" />
+      <parent link="${prefix}_top_right_door_link" />
+      <child link="${prefix}_top_right_handle" />
+      <axis xyz="0 0 0" />
+    </joint>
+    <link name="${prefix}_bottom_left_door_link">
+      <inertial>
+        <origin xyz="-0.00450034302806168 0.274520924711771 0.919930632103056" rpy="0 0 0" />
+        <mass value="20.6064292036732" />
+        <inertia ixx="6.3513401599766" ixy="-1.94047407074802E-06" ixz="6.43290129099749E-06" iyy="5.81358969708387" iyz="-0.000392406978750845" izz="0.539124246302347" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_dir}/bottom_left_door_link.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="1 1 1 1" />
+        </material>
+      </visual>
+      <collision>
+        <!-- <origin xyz="0.013 -0.05 0" rpy="0 0 0" /> -->
+        <origin xyz="0.0 0.0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_dir}/bottom_left_door_link.STL" scale="2.0 1.05 1.0" />
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${prefix}_bottom_left_door_joint" type="revolute">
+      <origin xyz="0.5745 0.0305000000000002 0.0849999999999999" rpy="0 0 0" />
+      <parent link="${prefix}_base_link" />
+      <child link="${prefix}_bottom_left_door_link" />
+      <axis xyz="0 0 -1" />
+      <limit lower="0.0" upper="3.14" effort="30" velocity="10" />
+    </joint>
+    <link name="${prefix}_bottom_left_handle">
+      <inertial>
+        <origin xyz="0.00955678974336482 -2.22044604925031E-16 2.26330649422124E-06" rpy="0 0 0" />
+        <mass value="0.0101205665745809" />
+        <inertia ixx="3.69207813332893E-06" ixy="3.08073100413027E-21" ixz="-5.5585202656004E-12" iyy="4.85274053427342E-06" iyz="5.95075922556884E-22" izz="1.51613518793931E-06" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_dir}/bottom_left_handle.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="1 1 1 1" />
+        </material>
+      </visual>
+      <!-- <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_dir}/bottom_left_handle.STL" />
+        </geometry>
+      </collision> -->
+    </link>
+    <joint name="${prefix}_bottom_left_handle_joint" type="fixed">
+      <origin xyz="0.0105 0.507 1.0515" rpy="0 0 0" />
+      <parent link="${prefix}_bottom_left_door_link" />
+      <child link="${prefix}_bottom_left_handle" />
+      <axis xyz="0 0 0" />
+    </joint>
+    <link name="${prefix}_bottom_right_door_link">
+      <inertial>
+        <origin xyz="-0.00450034302806168 -0.27452092471177 0.919930632103056" rpy="0 0 0" />
+        <mass value="20.6064292036732" />
+        <inertia ixx="6.3513401599766" ixy="1.94047407074222E-06" ixz="6.43290129099753E-06" iyy="5.81358969708387" iyz="0.000392406978750521" izz="0.539124246302347" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_dir}/bottom_right_door_link.STL" scale = "1 1 1" />
+        </geometry>
+        <material name="">
+          <color rgba="1 1 1 1" />
+        </material>
+      </visual>
+      <!-- <collision>
+        <origin xyz="0 0.1 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_dir}/bottom_right_door_link.STL" scale="1.0 1.0 1"/>
+        </geometry>
+      </collision> -->
+      <collision>
+        <origin xyz="0 0.1 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_dir}/bottom_right_door_link.STL" scale="3.0 1.5 1"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${prefix}_bottom_right_door_joint" type="revolute">
+      <origin xyz="0.5745 1.1395 0.085" rpy="0 0 0" />
+      <parent link="${prefix}_base_link" />
+      <child link="${prefix}_bottom_right_door_link" />
+      <axis xyz="0 0 1" />
+      <limit lower="0.0" upper="3.14" effort="30" velocity="10" />
+    </joint>
+    <link name="${prefix}_bottom_right_handle">
+      <inertial>
+        <origin xyz="0.00955678974336482 0 2.26330649422124E-06" rpy="0 0 0" />
+        <mass value="0.0101205665745808" />
+        <inertia ixx="3.69207813332901E-06" ixy="2.04776361972461E-21" ixz="-5.55852026494191E-12" iyy="4.85274053427337E-06" iyz="-5.48739223596335E-21" izz="1.51613518793942E-06" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_dir}/bottom_right_handle.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="1 1 1 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="${mesh_dir}/bottom_right_handle.STL" scale="3.5 2.8 2.8" />
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${prefix}_bottom_right_handle_joint" type="fixed">
+      <!-- <origin xyz="0.0105 -0.507 1.05149817210329" rpy="0 0 0" /> -->
+      <!-- <origin xyz="0.0105 -0.524 1.05149817210329" rpy="0 0 0" /> -->
+      <!-- <origin xyz="0.0105 -0.500 1.05149817210329" rpy="0 0 0" /> -->
+      <origin xyz="0.0105 -0.507 1.05149817210329" rpy="0 0 0" />
+      <parent link="${prefix}_bottom_right_door_link" />
+      <child link="${prefix}_bottom_right_handle" />
+      <axis xyz="0 0 0" />
+    </joint>
+  </xacro:macro>
+</robot>

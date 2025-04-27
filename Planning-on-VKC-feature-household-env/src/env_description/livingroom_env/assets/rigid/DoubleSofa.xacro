@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="DoubleSofa_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="DoubleSofa" params="prefix x y z theta">
+    <link name="${prefix}_DoubleSofa_base_link"/>
+    <joint name="${prefix}_DoubleSofa_base_joint" type="fixed">
+      <origin xyz="${x} ${y} ${z}" rpy="0 0 ${theta}" />
+      <parent link="world" />
+      <child link="${prefix}_DoubleSofa_base_link" />
+      <axis xyz="0 0 0" />
+    </joint>
+
+    <link name="${prefix}_DoubleSofa_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://env_description/livingroom_env/assets/rigid/Sofa.stl" scale="0.00568181818 0.00568181818  0.00568181818" />
+        </geometry>
+        <material name="">
+          <color rgba="0.564705882352941 0.564705882352941 0.564705882352941 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <!-- <mesh filename="package://env_description/tieta_env/assets/rigid/table_link.STL" scale="0.666667 0.5 1"/> -->
+          <mesh filename="package://env_description/livingroom_env/assets/rigid/Sofa.stl" scale="0.00568181818 0.00568181818 0.00568181818"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${prefix}_DoubleSofa_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="${prefix}_DoubleSofa_base_link" />
+      <child link="${prefix}_DoubleSofa_link" />
+      <axis xyz="0 0 0" />
+    </joint>
+
+    
+  </xacro:macro>
+</robot>

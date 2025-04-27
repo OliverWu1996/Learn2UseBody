@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<robot name="robot_stick" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="broom" params="prefix:=stick parent:=world scale:=1 xyz rpy">
+        <joint name="${prefix}_world_joint" type="fixed">
+            <origin xyz="${xyz}" rpy="${rpy}" />
+            <parent link="${parent}" />
+            <child link="${prefix}_base_link" />
+        </joint>
+
+        <link name="${prefix}_base_link" />
+        <joint name="${prefix}_base_joint" type="fixed">
+            <origin xyz="0 0 0.05" rpy="0 0 3.14" />
+            <parent link="${prefix}_base_link" />
+            <child link="${prefix}_stick" />
+        </joint>
+
+        <link name="${prefix}_stick">
+            <visual>
+                <origin xyz="0 0 -0.55" rpy="0 0 0" />
+                <geometry>
+                    <cylinder radius="0.02" length="0.95"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 -0.55" rpy="0 0 0" />
+                <geometry>
+                    <cylinder radius="0.02" length="0.95"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="${prefix}_base_brush_joint" type="fixed">
+            <origin xyz="0 0 -1" rpy="0 0 0" />
+            <parent link="${prefix}_base_link" />
+            <child link="${prefix}_brush" />
+        </joint>
+
+        <link name="${prefix}_brush">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.03 0.25 0.05"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <box size="0.03 0.25 0.05"/>
+                </geometry>
+            </collision>
+        </link>
+    </xacro:macro>
+</robot>

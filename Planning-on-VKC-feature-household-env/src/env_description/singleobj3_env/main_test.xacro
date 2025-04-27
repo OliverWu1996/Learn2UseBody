@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="singleobj3_env">
+  <link name="world" />
+  <xacro:include filename="$(find env_description)/singleobj3_env/assets/interactive/closet/closet.xacro" />
+  <!-- <xacro:include filename="$(find env_description)/singleobj3_env/assets/rigid/table.xacro" /> -->
+  <!-- <xacro:include filename="$(find env_description)/singleobj3_env/assets/rigid/cup.xacro" /> -->
+  <!-- <xacro:include filename="$(find env_description)/singleobj3_env/assets/interactive/foldable_table/foldable_table.xacro" />
+  <xacro:include filename="$(find env_description)/singleobj3_env/assets/rigid/cylinder.xacro" /> -->
+  <!-- <xacro:include filename="$(find env_description)/livingroom_env/assets/rigid/SingleSofa.xacro" /> -->
+  <xacro:include filename="$(find env_description)/singleobj3_env/assets/interactive/lamp/lamp.xacro" />
+  <xacro:include filename="$(find env_description)/singleobj3_env/assets/rigid/office_table.xacro" />
+  <!-- <xacro:include filename="$(find env_description)/singleobj3_env/assets/interactive/chair/chair.xacro" /> -->
+  <!-- <xacro:include filename="$(find env_description)/singleobj3_env/assets/rigid/box.xacro" /> -->
+  <!-- <xacro:include filename="$(find env_description)/singleobj3_env/assets/interactive/drawer/drawer.xacro" /> -->
+  <!-- <xacro:include filename="$(find env_description)/singleobj3_env/assets/rigid/stick.xacro" /> -->
+
+  <!-- <xacro:table prefix="table" x="0" y="-2" z="0.75" theta="0.0" /> -->
+  <!-- <xacro:table prefix="table2" x="0" y="-20" z="0.75" theta="0.0" />
+  <xacro:table prefix="table3" x="0" y="-40" z="0.75" theta="0.0" /> -->
+  <xacro:closet prefix="closet" x="2.05" y="-1.5" theta="3.1415926" />
+  <!-- <xacro:cup prefix="cup" x="0" y="0" z="2" theta="0.0" /> -->
+
+  <!-- <xacro:foldable_table prefix="foldable_table" x="0" y="-2" z="0.75" theta="0" />
+  <xacro:human prefix="human" x="0.85201712942" y="3.25" z="0" theta="0"/>-->
+  <!-- <xacro:SingleSofa prefix="SingleSofa" x="0" y="0" z="0.325" theta="-1.57" />  -->
+
+  <!-- <xacro:lamp prefix="lamp" x="0" y="0" z="0" theta="0"/> -->
+  <xacro:office_table prefix="office_table" x="1" y="1.5" z="0.75" theta="0"/>
+  <!-- <xacro:chair prefix="chair" x="0" y="0" theta="0" /> -->
+  <!-- <xacro:box prefix="box" x="-1" y="-1" z="1" theta="0" />
+    <xacro:drawer prefix="drawer" x="2.05" y="-1.5" z="1.0" theta="3.1415926" /> -->
+  <!-- <xacro:stick prefix="stick" xyz="0 0 0" rpy="0 0 0" /> -->
+
+   <link name="wall_link_north">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.2 11.1 2" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.2 11.1 2" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="north_wall_world_joint" type="fixed">
+    <origin xyz="2.7 0 1" rpy="0 0 0" />
+    <parent link="world" />
+    <child link="wall_link_north" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="wall_link_east">
+    <visual>
+      <origin xyz="0.5 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.2 5 2" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.5 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.2 5 2" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="east_wall_world_joint" type="fixed">
+    <origin xyz="0 -5 1" rpy="0 0 1.57" />
+    <parent link="world" />
+    <child link="wall_link_east" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="wall_link_west">
+    <visual>
+      <origin xyz="0.5 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.2 5 2" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0.5 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.2 5 2" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="west_wall_world_joint" type="fixed">
+    <origin xyz="0 4 1" rpy="0 0 1.57" />
+    <parent link="world" />
+    <child link="wall_link_west" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <link name="wall_link_south">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.2 11.1 2" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.2 11.1 2" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="south_wall_world_joint" type="fixed">
+    <origin xyz="-2.6 0 1" rpy="0 0 0" />
+    <parent link="world" />
+    <child link="wall_link_south" />
+    <axis xyz="0 0 0" />
+  </joint>
+</robot>

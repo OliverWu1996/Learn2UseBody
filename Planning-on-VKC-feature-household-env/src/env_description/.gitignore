@@ -1,0 +1,7 @@
+*/**/parts_render/
+*/**/parts_render_after_merging/
+*/**/point_sample/
+
+*.html
+*.txt
+*.json

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="tieta_env">
+  <link name="world" />
+  <xacro:include filename="$(find env_description)/tieta_env/assets/interactive/closet/closet.xacro" />
+  <xacro:include filename="$(find env_description)/tieta_env/assets/rigid/table.xacro" />
+  <xacro:include filename="$(find env_description)/tieta_env/assets/rigid/cup.xacro" />
+  <!-- <xacro:include filename="$(find env_description)/tieta_env/assets/interactive/foldable_table/foldable_table.xacro" /> -->
+  <!-- <xacro:include filename="$(find env_description)/tieta_env/assets/interactive/chair/chair.xacro" /> -->
+  <!-- <xacro:include filename="$(find env_description)/tieta_env/assets/rigid/box.xacro" /> -->
+  <xacro:include filename="$(find env_description)/tieta_env/assets/interactive/drawer/drawer.xacro" />
+  <!-- <xacro:include filename="$(find env_description)/tieta_env/assets/rigid/stick.xacro" /> -->
+
+  <xacro:table prefix="table" x="0" y="-2" z="0.75" theta="0.0" />
+  <xacro:table prefix="table2" x="0" y="-20" z="0.75" theta="0.0" />
+  <xacro:table prefix="table3" x="0" y="-40" z="0.75" theta="0.0" />
+  <xacro:closet prefix="closet" x="2.05" y="-1.5" theta="3.1415926" />
+  <xacro:cup prefix="cup" x="0" y="0" z="2" theta="0.0" />
+
+  <!-- <xacro:foldable_table prefix="foldable_table" x="0" y="-2" z="0.75" theta="0" /> -->
+  <!-- <xacro:chair prefix="chair" x="0" y="2" theta="0" /> -->
+  <!-- <xacro:box prefix="box" x="-1" y="-1" z="1" theta="0" /> -->
+  <xacro:drawer prefix="drawer" x="2.05" y="-1.5" z="1.0" theta="3.1415926" /> 
+  <!-- <xacro:stick prefix="stick" xyz="0 0 0" rpy="0 0 0" /> -->
+
+  <link name="wall_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.2 8 2" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.2 8 2" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="wall_world_joint" type="fixed">
+    <origin xyz="2.8 0 1" rpy="0 0 0" />
+    <parent link="world" />
+    <child link="wall_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+</robot>

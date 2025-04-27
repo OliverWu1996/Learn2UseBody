@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+
+<robot name="foldaboe_table_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+    
+    
+
+<xacro:macro name="foldable_table" params="prefix x y z theta">
+    <xacro:property name="table_thickness" value="0.025"/>
+    <link name="${prefix}_base_link"/>
+    <joint name="${prefix}_table_base_joint" type="fixed">
+      <origin xyz="${x} ${y} ${z}" rpy="0 0 ${theta}" />
+      <parent link="world" />
+      <child link="${prefix}_base_link" />
+      <axis xyz="0 0 0" />
+    </joint>
+
+    <link name="${prefix}_table_plane">
+      <visual>
+        <origin rpy="0 0 0" xyz="-0.054 0 0.09"/>
+        <geometry>
+          <box size="0.6 1.2 ${table_thickness}"/>
+        </geometry>
+        
+      </visual>
+      <collision>
+          <origin rpy="0 0 0" xyz="-0.054 0 0.09"/>
+          <geometry>
+            <box size="0.6 1.2 ${table_thickness}" scale="1.2 1.2 1.2"/>
+          </geometry>
+          
+      </collision>
+    </link>
+     <joint name="${prefix}_base_tableplane_joint" type="revolute">
+      <origin rpy="0 1.24  0" xyz="0 0 0"/>
+      <parent link="${prefix}_base_link"/>
+      <child link="${prefix}_table_plane"/>
+      <axis xyz="0 1 0"/>
+      <limit lower="-1.24 " upper="0" effort="30" velocity="10" />
+    </joint>
+    <link name="${prefix}_table_plane_below">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 -0.33"/>
+        <geometry>
+          <box size="0.5 1.1 0.66"/>
+        </geometry>
+        
+      </visual>
+      <collision>
+          <origin rpy="0 0 0" xyz="0 0 -0.33"/>
+          <geometry>
+            <box size="0.5 1.1 0.66"/>
+          </geometry>
+      </collision>
+    </link>
+    <joint name="${prefix}_base_planebelow_joint" type="fixed">
+      <origin rpy="0 0 0" xyz="-0.054 0 0"/>
+      <parent link="${prefix}_base_link"/>
+      <child link="${prefix}_table_plane_below"/>
+    </joint>
+
+    <link name="${prefix}_table_interactive">
+      <!-- <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <box size="0.1 0.1 0.1"/>
+        </geometry>
+        
+      </visual> -->
+    </link>
+    <joint name="${prefix}_base_interactive" type="fixed">
+      <origin rpy="0 0 3.1415926" xyz="-0.354 0.445 0.09"/>
+      <parent link="${prefix}_table_plane"/>
+      <child link="${prefix}_table_interactive"/>
+    </joint>
+
+</xacro:macro>
+    
+
+</robot>
